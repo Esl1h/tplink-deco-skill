@@ -1,39 +1,39 @@
-# Guia para agentes
+# Agent guide
 
-Este arquivo explica como alterar esta skill sem quebrá-la.
+This file explains how to change this skill without breaking it.
 
-## O que este repositório contém
+## What this repository contains
 
-Uma skill de agente que controla um mesh TP-Link Deco pela API web local do roteador, via pacote Python `tplink-deco-api`, com um CLI fino que imprime JSON.
+An agent skill that controls a TP-Link Deco mesh through the router's local web API, via the Python package `tplink-deco-api`, with a thin CLI that prints JSON.
 
-- `SKILL.md` é a fonte da verdade da skill.
-- `scripts/deco.py` é o CLI (Python 3.14+, `pip install tplink-deco-api`).
-- `tests/test_deco.py` cobre o plumbing do CLI, sem roteador.
-- `README.md` documenta instalação, configuração e desenvolvimento.
-- `.claude-plugin/plugin.json` e `.claude-plugin/marketplace.json` descrevem o plugin do Claude Code e apontam o carregador de skill para o `SKILL.md` na raiz.
+- `SKILL.md` is the source of truth for the skill.
+- `scripts/deco.py` is the CLI (Python 3.14+, `pip install tplink-deco-api`).
+- `tests/test_deco.py` covers the CLI plumbing, no router needed.
+- `README.md` documents installation, configuration and development.
+- `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` describe the Claude Code plugin and point the skill loader at the root `SKILL.md`.
 
-Não há etapa de build.
+There is no build step.
 
-## Regras para mudanças
+## Rules for changes
 
-- Mantenha a skill em inglês e portável entre agentes. Não escreva instruções que limitem a uma ou duas ferramentas de agente específicas.
-- Credenciais só por variáveis de ambiente (`DECO_HOST`, `DECO_USER`, `DECO_PASSWORD`). Nunca coloque senhas em código, exemplos ou logs.
-- A skill lê por padrão. Ações que mudam estado (`block`, `unblock`, `rename`, `forget`, `reserve`, `unreserve`) exigem confirmação do usuário; mantenha essa regra no `SKILL.md`.
-- Mantenha o import do `tplink_deco_api` tardio, dentro de `load_sdk`: os testes de plumbing rodam sem o pacote instalado e o `--help` não pode exigir instalação.
-- Não faça polling em loop no CLI; a API do roteador é sensível a excesso de chamadas.
-- Mantenha os dois arquivos `.claude-plugin/` em sincronia com o `SKILL.md` (nome, descrição, palavras-chave). Ao mudar o comportamento da skill, suba a versão no `plugin.json`.
-- OpenCode não usa manifest de plugin para skills: elas são descobertas dos diretórios de skills (`~/.config/opencode/skills`, `~/.claude/skills`, `.agents/skills`) ou instaladas pelo CLI do skills.sh. Não crie manifest para o OpenCode.
+- Keep the skill in English and portable across agents. Do not write instructions that tie it to one or two specific agent tools.
+- Credentials come from environment variables only (`DECO_HOST`, `DECO_USER`, `DECO_PASSWORD`). Never put passwords in code, examples or logs.
+- The skill reads by default. State-changing actions (`block`, `unblock`, `rename`, `forget`, `reserve`, `unreserve`) require user confirmation; keep that rule in `SKILL.md`.
+- Keep the `tplink_deco_api` import lazy, inside `load_sdk`: the plumbing tests run without the package installed and `--help` must not require installation.
+- Do not add polling loops to the CLI; the router's API is sensitive to excess requests.
+- Keep the two `.claude-plugin/` files in sync with `SKILL.md` (name, description, keywords). Bump the version in `plugin.json` whenever the skill's behavior changes.
+- OpenCode has no plugin manifest for skills: they are discovered from the skills directories (`~/.config/opencode/skills`, `~/.claude/skills`, `.agents/skills`) or installed by the skills.sh CLI. Do not create a manifest for OpenCode.
 
-## Verificações
+## Checks
 
-Antes de publicar, rode os testes:
+Before publishing, run the tests:
 
 ```sh
 python3 -m unittest discover -s tests
 ```
 
-Sem o `tplink-deco-api` instalado, o teste que precisa dele pula sozinho. Nenhum roteador é necessário.
+Without `tplink-deco-api` installed, the test that needs it skips on its own. No router is required.
 
-## Estilo de escrita
+## Writing style
 
-Linguagem simples e direta: voz ativa, frases curtas, um único termo para a mesma coisa. Identificadores, comandos, saídas de API e mensagens de erro ficam exatamente como são. Em português, acentuação e crase corretas.
+Plain, direct language: active voice, short sentences, one term per thing. Identifiers, commands, API output and error messages stay exactly as they are. Keep diacritics correct whenever Portuguese appears.
