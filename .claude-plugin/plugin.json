@@ -7,8 +7,8 @@
     "name": "Esl1h",
     "url": "https://github.com/Esl1h"
   },
-  "homepage": "https://github.com/Esl1h/tplink-deco",
-  "repository": "https://github.com/Esl1h/tplink-deco",
+  "homepage": "https://github.com/Esl1h/tplink-deco-skill",
+  "repository": "https://github.com/Esl1h/tplink-deco-skill",
   "license": "MIT",
   "keywords": ["tplink", "deco", "mesh", "wifi", "router", "dhcp", "network"],
   "skills": ["./"]

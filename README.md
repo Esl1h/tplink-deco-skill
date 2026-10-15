@@ -16,13 +16,13 @@ Thin CLI, one command, one JSON response. Local network only, no cloud account. 
 With the skills CLI (https://skills.sh), which supports OpenCode, Claude Code and other agents:
 
 ```sh
-npx skills add Esl1h/tplink-deco
+npx skills add Esl1h/tplink-deco-skill
 ```
 
 As a Claude Code plugin:
 
 ```text
-/plugin marketplace add Esl1h/tplink-deco
+/plugin marketplace add Esl1h/tplink-deco-skill
 /plugin install tplink-deco@tplink-deco
 ```
 
