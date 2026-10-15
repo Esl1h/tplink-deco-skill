@@ -10,6 +10,7 @@ Uma skill de agente que controla um mesh TP-Link Deco pela API web local do rote
 - `scripts/deco.py` é o CLI (Python 3.14+, `pip install tplink-deco-api`).
 - `tests/test_deco.py` cobre o plumbing do CLI, sem roteador.
 - `README.md` documenta instalação, configuração e desenvolvimento.
+- `.claude-plugin/plugin.json` e `.claude-plugin/marketplace.json` descrevem o plugin do Claude Code e apontam o carregador de skill para o `SKILL.md` na raiz.
 
 Não há etapa de build.
 
@@ -20,6 +21,8 @@ Não há etapa de build.
 - A skill lê por padrão. Ações que mudam estado (`block`, `unblock`, `rename`, `forget`, `reserve`, `unreserve`) exigem confirmação do usuário; mantenha essa regra no `SKILL.md`.
 - Mantenha o import do `tplink_deco_api` tardio, dentro de `load_sdk`: os testes de plumbing rodam sem o pacote instalado e o `--help` não pode exigir instalação.
 - Não faça polling em loop no CLI; a API do roteador é sensível a excesso de chamadas.
+- Mantenha os dois arquivos `.claude-plugin/` em sincronia com o `SKILL.md` (nome, descrição, palavras-chave). Ao mudar o comportamento da skill, suba a versão no `plugin.json`.
+- OpenCode não usa manifest de plugin para skills: elas são descobertas dos diretórios de skills (`~/.config/opencode/skills`, `~/.claude/skills`, `.agents/skills`) ou instaladas pelo CLI do skills.sh. Não crie manifest para o OpenCode.
 
 ## Verificações
 

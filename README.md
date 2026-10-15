@@ -13,13 +13,24 @@ Thin CLI, one command, one JSON response. Local network only, no cloud account. 
 
 ## Install
 
-With the skills CLI (https://skills.sh):
+With the skills CLI (https://skills.sh), which supports OpenCode, Claude Code and other agents:
 
 ```sh
 npx skills add Esl1h/tplink-deco
 ```
 
-Or copy this repository into your agent's skills directory.
+As a Claude Code plugin:
+
+```text
+/plugin marketplace add Esl1h/tplink-deco
+/plugin install tplink-deco@tplink-deco
+```
+
+For OpenCode, link this repository inside a skills directory (`~/.config/opencode/skills`, `~/.claude/skills`, `.agents/skills`); OpenCode loads skills from those directories and needs no plugin manifest. Do not point OpenCode's `skills` config directly at this repository root: a root-level `SKILL.md` gets the literal ID `SKILL` in OpenCode V2.
+
+```sh
+ln -s /path/to/this-repo ~/.config/opencode/skills/tplink-deco
+```
 
 ## Configuration
 

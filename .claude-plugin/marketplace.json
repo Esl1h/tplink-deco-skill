@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "tplink-deco",
+  "owner": {
+    "name": "Esl1h",
+    "url": "https://github.com/Esl1h"
+  },
+  "description": "Install the tplink-deco skill as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "tplink-deco",
+      "source": "./",
+      "description": "Manage a TP-Link Deco mesh Wi-Fi network through the router's local web API: nodes, connected clients, internet blocking, DHCP reservations.",
+      "license": "MIT",
+      "keywords": ["tplink", "deco", "mesh", "wifi", "router", "dhcp", "network"]
+    }
+  ]
+}
